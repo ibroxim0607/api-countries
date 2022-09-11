@@ -97,8 +97,14 @@ elList.addEventListener("click", (e) => {
     const currentCountry = countrties.find(
       (counrty) => counrty.cca2 == countryCode
     );
+
+    innerHTML = null
+    const newImg = document.createElement("img")
+    newImg.src = currentCountry.flags.svg
+
+
     const newP = document.createElement("p");
-    newP.textContent = currentCountry.capital;
+    newP.textContent = `Region: ${currentCountry.capital}`;
     newP.classList.add("text-capital");
     elModalBody.append(newP);
   }
