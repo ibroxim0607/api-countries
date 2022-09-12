@@ -5,6 +5,7 @@ let elCountriesList = document.querySelector("js-countries-list");
 let elList = document.querySelector(".js-countries-list");
 let elModal = document.querySelector(".js-modal-wrapper");
 let elModalBody = elModal.querySelector(".modal-body");
+let elModalTitle = elModal.querySelector(".modal-title")
 
 let countrties = [];
 
@@ -40,11 +41,6 @@ function renderCountries(country) {
     ).innerHTML = `<strong class = "fw-bold">Map:</strong> <a href ="${country.maps.googleMaps}">Here</a> `;
 
     templateItemClone.querySelector(".btn-primary").value = country.cca2;
-    // templateItemClone
-    //   .querySelector(".btn-primary")
-    //   .addEventListener("click", () => {
-    //     elModalBody.textContent = country.capital;
-    //   });
 
     elTemplateFragment.append(templateItemClone);
   });
@@ -92,20 +88,26 @@ elForm.addEventListener("submit", function (evt) {
 });
 
 elList.addEventListener("click", (e) => {
+  elModalBody.innerHTML = null;
   if (e.target.matches(".js-query")) {
     const countryCode = e.target.value;
     const currentCountry = countrties.find(
       (counrty) => counrty.cca2 == countryCode
     );
 
-    innerHTML = null
-    const newImg = document.createElement("img")
-    newImg.src = currentCountry.flags.svg
-
+    elModalTitle.textContent = currentCountry.name.common
 
     const newP = document.createElement("p");
-    newP.textContent = `Region: ${currentCountry.capital}`;
+    newP.textContent = currentCountry.capital;
     newP.classList.add("text-capital");
     elModalBody.append(newP);
+
+    const newH6 = document.createElement("h6")
+    newH6.textContent = `Area: ${currentCountry.area}`
+    elModalBody.append(newH6)
+
+    const newH5 = document.createElement("h5")
+    newH5.textContent = `Borders: ${currentCountry.borders}`
+    elModalBody.append(newH5)
   }
 });
