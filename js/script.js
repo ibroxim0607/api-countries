@@ -50,7 +50,6 @@ function renderCountries(country) {
 
 // Error Function
 function errorFunction(err) {
-  elList.innerHTML = null;
 
   let errItem = document.createElement("li");
   errItem.className = "alert alert-danger";
@@ -64,7 +63,7 @@ function searchCountry(country) {
   fetch(`https://restcountries.com/v3.1/name/${country}`)
     .then((res) => {
       if (res.status != 200) {
-        throw new Error(error("Sorry your contry is not found"));
+        alert("Bu davlat ro'xatga kiritilmagan")
       }
 
       return res.json();
